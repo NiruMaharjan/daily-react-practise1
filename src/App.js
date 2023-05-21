@@ -1,30 +1,75 @@
 import logo from './logo.svg';
 import './App.css';
+import {User} from './User'
+
+
 
 function App() {
-  const name = <h1>Niru Maharjan</h1>
-  const address = <h2>Kirtipur</h2>
+  // const age =15;
+  // const isGreen= true;
+  
+// if(age >=18){
+//   return <h1>Over age</h1>
+// }else{
+//   return <h1>Under age</h1>
+// }
 
-  return (
-    <div className="App">
-      <User name="Niru Maharjan"   address= "kirtipur" email="nmaharjan417@gmail.com"/>
-      <User name="Srisha Maharjan" address="kirtipur" email="srishamaharjan@gmail.com"/>
+// return <div className='App'>
+//   {age >=18 ? <h1>Over age</h1> : <h1>Under age</h1>}
+//    <h2 style={{color:isGreen ? "green": 'red'}}>Red</h2>
+//    {isGreen && <button>This is a button</button>}
+//   </div>
 
-      
-    </div>
-  );
+//return <div className='App'></div>
+//array
+
+// const names= ["Pedro", "Jake", "Jessica", 'Mike', "Dustin"];
+
+// return(
+//   <div className="App">
+//     {/* <h1>{names[1]}</h1> */}
+//     {names.map((name, key) =>{
+//       return <h1 key={key}>{name}</h1>
+//     })}
+
+//   </div>
+//)
+
+// const users = [
+//   {name:"Pedro", age:21},
+//   {name:"Jake", age:25},
+//   {name:"Jessica", age:45},
+// ];
+
+// return(
+//   <div className="App">
+//     {users.map((user, key)=>{
+//       return <div>
+//         {user.name}{user.age}
+//         </div>
+//     })}
+
+
+//   </div>
+// )
+
+const users = [
+  {name:"Pedro", age:21},
+  {name:"Jake", age:25},
+  {name:"Jessica", age:45},
+];
+
+return(
+  <div className="App">
+    {users.map((user, key)=>{
+      return <User name ={user.name} age ={user.age}/>;
+    })}
+
+
+  </div>
+)
+
+
+
 }
-
- const User =(props) =>{
-  return(
-    <div>
-      <h1>{props.name}</h1>
-      <h2>{props.address}</h2>
-      <h2>{props.email}</h2>
-
-    </div>
-  )
- }
-
-
 export default App;
