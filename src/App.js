@@ -1,75 +1,52 @@
 import logo from './logo.svg';
 import './App.css';
 import {User} from './User'
+import {useState} from "react";
 
 
 
 function App() {
-  // const age =15;
-  // const isGreen= true;
-  
-// if(age >=18){
-//   return <h1>Over age</h1>
-// }else{
-//   return <h1>Under age</h1>
-// }
+  const [age, setAge] = useState(0)
+  const [inputValue, setInputValue] = useState(true)
+  const [textColor, setTextColor] = useState("black");
 
-// return <div className='App'>
-//   {age >=18 ? <h1>Over age</h1> : <h1>Under age</h1>}
-//    <h2 style={{color:isGreen ? "green": 'red'}}>Red</h2>
-//    {isGreen && <button>This is a button</button>}
-//   </div>
+  //let  age = 0;
 
-//return <div className='App'></div>
-//array
+  const increaseAge = () =>{
+    setAge(age+1)
+    // age =age +1
+    
+    // console.log(age);
+  };
 
-// const names= ["Pedro", "Jake", "Jessica", 'Mike', "Dustin"];
+  const handleInputChange = (event) =>{
+    setInputValue(event.target.value)
+    console.log(event.target.value)
+  };
 
-// return(
-//   <div className="App">
-//     {/* <h1>{names[1]}</h1> */}
-//     {names.map((name, key) =>{
-//       return <h1 key={key}>{name}</h1>
-//     })}
+  const toggle = ()=>{
+    setInputValue(!inputValue)
+  }
 
-//   </div>
-//)
+  return<div className='App'>
+    {age} 
+    <button onClick={increaseAge}> Increase Age</button>
+    <input type="text" onChange = {handleInputChange}/>
+    {inputValue}
+    <button onClick={toggle}>Show/hide</button>
+    {inputValue && <h1>My name is niru</h1>}
 
-// const users = [
-//   {name:"Pedro", age:21},
-//   {name:"Jake", age:25},
-//   {name:"Jessica", age:45},
-// ];
+    <button 
+    onClick ={()=>{
+   //setTextColor("red");
+   setTextColor(textColor === "black"?"red":"black");
+    }
 
-// return(
-//   <div className="App">
-//     {users.map((user, key)=>{
-//       return <div>
-//         {user.name}{user.age}
-//         </div>
-//     })}
+    }>Change color</button>
+    <h1 style={{color:textColor}}>Srisha</h1>
 
 
-//   </div>
-// )
-
-const users = [
-  {name:"Pedro", age:21},
-  {name:"Jake", age:25},
-  {name:"Jessica", age:45},
-];
-
-return(
-  <div className="App">
-    {users.map((user, key)=>{
-      return <User name ={user.name} age ={user.age}/>;
-    })}
-
-
-  </div>
-)
-
-
+    </div>
 
 }
 export default App;
