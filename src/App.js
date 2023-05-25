@@ -6,47 +6,57 @@ import {useState} from "react";
 
 
 function App() {
-  const [age, setAge] = useState(0)
-  const [inputValue, setInputValue] = useState(true)
-  const [textColor, setTextColor] = useState("black");
+  const[todoList, setTodoList] = useState([]);
+  const [newTask, setNewTask] = useState("");
 
-  //let  age = 0;
+  const handleChange =(event) =>{
+    setNewTask(event.target.value)
 
-  const increaseAge = () =>{
-    setAge(age+1)
-    // age =age +1
-    
-    // console.log(age);
   };
 
-  const handleInputChange = (event) =>{
-    setInputValue(event.target.value)
-    console.log(event.target.value)
-  };
-
-  const toggle = ()=>{
-    setInputValue(!inputValue)
+  const addTask = ()=>{
+    // const newTodoList = [...todoList,newTask]
+    // setTodoList(newTodoList);
+    const task ={
+      id: todoList.length ===0 ?1:todoList[todoList.length-1].id+1,
+      taskName:newTask,
+    }
+    setTodoList([...todoList, task]);
   }
 
-  return<div className='App'>
-    {age} 
-    <button onClick={increaseAge}> Increase Age</button>
-    <input type="text" onChange = {handleInputChange}/>
-    {inputValue}
-    <button onClick={toggle}>Show/hide</button>
-    {inputValue && <h1>My name is niru</h1>}
+  const deleteTask =(id) =>{
+    // const newTodoList = todoList.filter((task)=>{
+    //   return task !== taskName;
+    // }) 
+    // setTodoList(newTodoList)
+    //setTodoList(todoList.filter((task)=> task !== taskName));
+    setTodoList(todoList.filter((task)=> task.id !== id));
 
-    <button 
-    onClick ={()=>{
-   //setTextColor("red");
-   setTextColor(textColor === "black"?"red":"black");
-    }
+  }
 
-    }>Change color</button>
-    <h1 style={{color:textColor}}>Srisha</h1>
 
+ return(
+  <div className='App'>
+    <div className='addTask'>
+    <input onChange ={handleChange}/>
+    <button onClick={addTask}>Add Task</button>
+    </div>
+    <div className="list">
+      {todoList.map((task) =>{
+        return (
+          <div>
+          <h1>{task.taskName}</h1>
+          <button onClick = {()=>deleteTask(task.id)}>X</button>
+          </div>
+        )
+      })}
 
     </div>
+  
+   
+
+  </div>
+ )
 
 }
 export default App;
